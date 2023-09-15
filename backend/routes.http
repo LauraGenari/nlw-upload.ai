@@ -5,3 +5,26 @@ GET http://localhost:3333/prompts
 
 # @name list-prompts
 GET http://localhost:3333/prompts
+
+###
+
+# @name upload
+POST http://localhost:3333/videos
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="pastor-junior.mp3"
+Content-Type: audio/mpeg
+
+< ./pastor-junior.mp3
+--boundary--
+
+###
+
+# @name create
+POST http://localhost:3333/videos/1ceef2c7-fabe-4e5d-b5dc-fcf2114bf0d2/transcription
+Content-Type:  application/json
+
+{
+    "prompt": "pastor"
+}
