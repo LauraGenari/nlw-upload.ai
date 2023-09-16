@@ -37,8 +37,7 @@ export async function uploadVideoRoute (app: FastifyInstance) {
         
         //dirname retornar ate routes
         const uploadDestination = path.resolve(__dirname, '../../tmp', fileUploadName)
-        
-        console.log(data.filename)
+
         // write while receiving
         await pump(data.file, fs.createWriteStream(uploadDestination));
 

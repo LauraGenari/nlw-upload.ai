@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify";
-import fs from "node:fs";
+import { createReadStream } from "fs";
 import { z } from 'zod';
 import { prisma } from "../lib/prisma";
 import { openai } from "../lib/openai";
@@ -26,7 +26,7 @@ export async function createTranscriptionRoute (app: FastifyInstance) {
 
         const videoPath = video.path;
 
-        const audioReadStream = fs.createReadStream(videoPath);
+        const audioReadStream = createReadStream(videoPath);
 
         const response = await openai.audio.transcriptions.create({
             file: audioReadStream,
@@ -45,7 +45,7 @@ export async function createTranscriptionRoute (app: FastifyInstance) {
                 id: videoId,
             },
             data: {
-                transcription: transcription,
+                transcription,
             }
         })
         return { transcription };

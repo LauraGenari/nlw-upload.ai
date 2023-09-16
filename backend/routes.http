@@ -13,16 +13,16 @@ POST http://localhost:3333/videos
 Content-Type: multipart/form-data; boundary=boundary
 
 --boundary
-Content-Disposition: form-data; name="file"; filename="pastor-junior.mp3"
+Content-Disposition: form-data; name="file"; filename="example.mp3"
 Content-Type: audio/mpeg
 
-< ./pastor-junior.mp3
+< ./example.mp3
 --boundary--
 
 ###
 
 # @name create-transcription
-POST http://localhost:3333/videos/4d4204fb-031a-477a-b063-c94d51fe13aa/transcription
+POST http://localhost:3333/videos/cf02ac98-e5db-48b0-a2c7-30e9fec80553/transcription
 Content-Type:  application/json
 
 {
