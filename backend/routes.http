@@ -26,5 +26,18 @@ POST http://localhost:3333/videos/cf02ac98-e5db-48b0-a2c7-30e9fec80553/transcrip
 Content-Type:  application/json
 
 {
-    "prompt": "pastor"
+    "prompt": "clean architecture, ddd"
 }
+
+###
+
+# @name generate-ai-completion
+POST http://localhost:3333/ai/complete
+Content-Type:  application/json
+
+{
+    "videoId": "cf02ac98-e5db-48b0-a2c7-30e9fec80553",
+    "temperature": 0.5,
+    "template": "Gere um resumo sucinto da transcrição do video informada a seguir: '''{transcription}'''"
+}
+
