@@ -6,8 +6,16 @@ import { Label } from "./components/ui/label";
 import { SelectValue, Select, SelectTrigger, SelectContent, SelectItem } from "./components/ui/select";
 import { Slider } from "./components/ui/slider";
 import { VideoInputForm } from "./components/video-input-form";
+import { PromptSelect } from "./components/prompt-select";
+import { useState } from "react";
 
 export function App() {
+  const [temperature, setTemperature] = useState(0.5)
+
+  function handlePromptSelected(template: string) {
+    console.log(template)
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
       <div className="px-6 py-3 flex items-center justify-between border-b">
@@ -46,19 +54,7 @@ export function App() {
           <form className="space-y-6">
             <div className="space-y-2">
               <Label>Prompt</Label>
-              <Select disabled defaultValue="gpt-3.5">
-                <SelectTrigger>
-                  <SelectValue placeholder="Selecione um prompt..." />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="title">
-                    Título do YouTube
-                  </SelectItem>
-                  <SelectItem value="description">
-                    Descrição do YouTube
-                  </SelectItem>
-                </SelectContent>
-              </Select>
+              <PromptSelect onPromptSelect={handlePromptSelected} />
               <span className="block text-xs text-muted-foreground italic">
                 Você poderá customizar essa opção em breve
               </span>
@@ -89,6 +85,8 @@ export function App() {
                 min={0}
                 max={1}
                 step={0.1}
+                value={[temperature]}
+                onValueChange={value => setTemperature(value[0])}
               />
               <span className="block text-xs text-muted-foreground italic leading-relaxed">
                 Valores mais altos tendem a deixar os resultado mais criativo e com possíveis erros.
